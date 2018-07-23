@@ -1,0 +1,19 @@
+<div class="ui-grid-col-7">
+    <h1>{{post.title}}</h1>
+    <p>{{post.text}}</p>
+    <hr>
+</div>
+
+<div class="ui-grid-col-7">
+    <p-panel header="Comentarios">
+        <form method="post" #frm="ngForm" (ngSubmit)="createPost(frm)">
+            <textarea [(ngModel)]="comment.text" name="text" [rows]="5" [cols]="76" pInputTextarea autoResize="autoResize" required></textarea>
+            <button pButton type="submit" style="margin-top: 10px;" label="Enviar" [disabled]="frm.invalid"></button>
+        </form>
+    </p-panel>
+</div>
+
+<div class="ui-grid-col-7">
+    <h1>Comentarios:</h1>
+    <p *ngFor="let comment of comments">{{comment.text}}</p>
+</div>

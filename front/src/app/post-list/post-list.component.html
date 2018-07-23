@@ -1,0 +1,24 @@
+<div class="ui-grid-col-8">
+  <p-dialog header="Inserir Postagem" [(visible)]="display" [width]="600">
+    <form method="post" #frm="ngForm" (ngSubmit)="createPost(frm)">
+        <input [(ngModel)]="post.title" name="title"  style="width: 550px; margin-bottom: 10px;" pInputText pInputText placeholder="Titulo"> 
+      <label for="">Texto:</label>
+
+      <textarea [(ngModel)]="post.text" name="text" pInputTextarea  [rows]="10" [cols]="59" require></textarea>
+      <button pButton type="submit" style="margin-top: 5px; display: inline; width: 20%; float: right;" [disabled]="frm.invalid"
+        label="Inserir"></button>
+    </form>
+  </p-dialog>
+  <button type="text" (click)="showDialog()" pButton icon="pi pi-plus" style="margin-bottom: 5px; display: inline; width: 20%; float: right;"
+    label="Adicionar"></button>
+</div>
+<div class="ui-grid-col-8">
+  <p-accordion *ngFor="let post of posts">
+    <p-accordionTab header="{{post.title}}" [selected]="true">
+      <p>{{post.text}}</p>
+      <br/>
+      <button pButton type="button" [routerLink]="['/post-details', post.id]" label="Visualizar →"></button>
+    </p-accordionTab>
+  </p-accordion>
+</div>
+
